@@ -1,10 +1,15 @@
 Package: InfluenceMetric
-Title: What the Package Does (One Line, Title Case)
+Title: Simple Diagnostics on the Influence of Points
 Version: 0.0.0.9000
 Authors@R: 
-    person("Alex", "Koh", , "alexkzw@outlook.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    person("Alex", "Koh", , "alexkzw@outlook.com", role = c("aut", "cre"))
+Description: This package provides functions to calculate and visualise various 
+    influence measures for regression models. The package allows users to create
+    a graph similar to Cook's distance plot but includes additional distance
+    measures. Users can input a dataset and a model (an object of class 'lm') 
+    to perform diagnostics on the influence of points. The package includes 
+    implementations for Cook's Distance Measure (Cook, 1977), DFFITS (Welsch 
+    and Kuh, 1977; Belsley, 1980), and Hadi's Influence Measure (Hadi, 1992).
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
