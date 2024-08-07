@@ -34,6 +34,10 @@
 #' # Add a reference line for influential points
 #' abline(h = 4 / (n - p - 1), col = "red")
 calculate_cooks_distance <- function(X, y){
+
+    #validate inputs
+    check_for_errors(X, y)
+
     n <- nrow(X)
     p <- ncol(X)
 
