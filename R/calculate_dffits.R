@@ -1,26 +1,54 @@
+#' Calculate DFFITS Measure
+#'
+#' This function calculates DFFITS for each observation in the dataset, which
+#' is a measure of the influence of each observation on the fitted regression model.
+#'
+#' @param X A numeric matrix representing the design matrix (including the intercept term).
+#' @param y A numeric vector representing the response variable.
+#'
+#' @return A numeric vector containing DFFITS for each observation.
+#' @export
+#'
+#' @examples
+#' set.seed(123)
+#' n <- 10  # number of observations
+#' p <- 2   # number of predictors (excluding intercept)
+#'
+#' # Generate random data
+#' X <- matrix(rnorm(n * p), n, p)
+#' y <- rnorm(n)
+#'
+#' # Add intercept term to the design matrix
+#' X <- cbind(1, X)
+#'
+#' # Calculate DFFITS
+#' dffits_values <- calculate_dffits(X, y)
+#'
+#' # Print the DFFITS values
+#' print(dffits_values)
 calculate_dffits <- function(X, y) {
     check_for_errors(X, y)
 
     n <- nrow(X)
     p <- ncol(X)
 
-    # Calculate the hat matrix H
+    # Calculate hat matrix H
     X_inv <- solve(t(X) %*% X)
     H <- X %*% X_inv %*% t(X)
     h_ii <- diag(H)
 
-    # Calculate the regression coefficients and fitted values
+    # Calculate regression coefficients and fitted values
     beta_hat <- X_inv %*% t(X) %*% y
     y_hat <- X %*% beta_hat
     residuals <- y - y_hat
 
-    # Calculate the mean squared error
+    # Calculate mean squared error
     mse <- sum(residuals^2) / (n - p)
 
-    # Calculate the standardized residuals
+    # Calculate standardized residuals
     standardized_residuals <- residuals / sqrt(mse * (1 - h_ii))
 
-    # Calculate the DFFITS values
+    # Calculate DFFITS values
     dffits_values <- standardized_residuals * sqrt(h_ii / (1 - h_ii))
 
     return(dffits_values)
