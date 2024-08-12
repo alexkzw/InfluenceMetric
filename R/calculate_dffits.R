@@ -7,25 +7,8 @@
 #' @param y A numeric vector representing the response variable.
 #'
 #' @return A numeric vector containing DFFITS for each observation.
-#' @export
 #'
-#' @examples
-#' set.seed(123)
-#' n <- 10  # number of observations
-#' p <- 2   # number of predictors (excluding intercept)
-#'
-#' # Generate random data
-#' X <- matrix(rnorm(n * p), n, p)
-#' y <- rnorm(n)
-#'
-#' # Add intercept term to the design matrix
-#' X <- cbind(1, X)
-#'
-#' # Calculate DFFITS
-#' dffits_values <- calculate_dffits(X, y)
-#'
-#' # Print the DFFITS values
-#' print(dffits_values)
+#' @keywords internal
 calculate_dffits <- function(X, y) {
     check_for_errors(X, y)
 

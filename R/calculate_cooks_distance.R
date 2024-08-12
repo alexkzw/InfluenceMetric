@@ -8,31 +8,8 @@
 #' @param y A numeric vector representing the response variable.
 #'
 #' @return A numeric vector containing Cook's Distance Measure for each observation.
-#' @export
 #'
-#' @examples
-#' set.seed(123)
-#' n <- 10  # number of observations
-#' p <- 2   # number of predictors (excluding intercept)
-#'
-#' # Generate random data
-#' X <- matrix(rnorm(n * p), n, p)
-#' y <- rnorm(n)
-#'
-#' # Add intercept term to the design matrix
-#' X <- cbind(1, X)
-#'
-#' # Calculate Cook's Distance
-#' cooks_distances <- calculate_cooks_distance(X, y)
-#'
-#' # Print the Cook's Distances
-#' print(cooks_distances)
-#'
-#' # Plot Cook's Distances
-#' plot(cooks_distances, type = "h", main = "Cook's Distance",
-#' ylab = "Cook's Distance", xlab = "Observation Index")
-#' # Add a reference line for influential points
-#' abline(h = 4 / (n - p - 1), col = "red")
+#' @keywords internal
 calculate_cooks_distance <- function(X, y){
 
     #validate inputs
