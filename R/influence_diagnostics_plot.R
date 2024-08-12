@@ -50,7 +50,7 @@ influence_diagnostics_plot <- function(model, measure = "cooks_distance", return
         plot_title <- "Hadi's Influence Measure"
         plot_threshold <- 2
     } else {
-        stop("Invalid measure specified. Choose 'cooks_distance', 'dffits', or 'hadis_influence'.")
+        stop("Invalid measure specified. Valid options are: 'cooks_distance', 'dffits', 'hadis_influence'.")
     }
 
     if (return_type == "measure") {
@@ -59,6 +59,6 @@ influence_diagnostics_plot <- function(model, measure = "cooks_distance", return
         plot(result, type = "h", main = plot_title, ylab = plot_title, xlab = "Observation Index")
         abline(h = plot_threshold, col = "red")
     } else {
-        stop("Invalid return_type specified. Choose 'measure' or 'plot'.")
+        stop("Invalid return_type specified. Valid options are: 'measure', 'plot'.")
     }
 }
