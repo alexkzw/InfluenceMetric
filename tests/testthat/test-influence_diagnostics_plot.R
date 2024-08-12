@@ -60,11 +60,9 @@ test_that("influence_diagnostics_plot works as intended", {
 
     # Test 11: Invalid measure specified
     expect_error(influence_diagnostics_plot(model, "invalid_measure", "measure",
-                                            X, y), "Invalid measure specified.
-                 Valid options are: 'cooks_distance', 'dffits', 'hadis_influence'.")
+                                            X, y), "Invalid measure specified. Valid options are: 'cooks_distance', 'dffits', 'hadis_influence'.")
 
     # Test 12: Invalid return_type specified
     expect_error(influence_diagnostics_plot(model, "cooks_distance", "invalid_type",
-                                            X, y), "Invalid return_type specified.
-                 Valid options are: 'measure', 'plot'.")
+                                            X, y), "Invalid return_type specified. Valid options are: 'measure', 'plot'.")
 })
