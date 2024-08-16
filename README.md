@@ -62,3 +62,29 @@ influence_diagnostics_plot(model, measure = "cooks_distance", return_type = "plo
 ```
 
 <img src="man/figures/README-example-1.png" width="100%" />
+
+You can also return the DFFITS values as a numeric vector:
+
+``` r
+# Return DFFITS values
+dffits_values <- influence_diagnostics_plot(model, measure = "dffits", return_type = "measure", X, y)
+
+# Print the first few DFFITS values
+head(dffits_values)
+#>             [,1]
+#> [1,] -0.07391089
+#> [2,]  0.07505821
+#> [3,] -0.01888071
+#> [4,]  0.02871133
+#> [5,] -0.12039860
+#> [6,]  0.17249046
+```
+
+You can also calculate and plot Hadi’s Influence Measure:
+
+``` r
+# Plot Hadi's Influence Measure
+influence_diagnostics_plot(model, measure = "hadis_influence", return_type = "plot", X, y)
+```
+
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />

@@ -62,3 +62,19 @@ model <- lm(y ~ X - 1)
 # Plot Cook's Distance
 influence_diagnostics_plot(model, measure = "cooks_distance", return_type = "plot", X, y)
 ```
+
+You can also return the DFFITS values as a numeric vector:
+```{r}
+# Return DFFITS values
+dffits_values <- influence_diagnostics_plot(model, measure = "dffits", return_type = "measure", X, y)
+
+# Print the first few DFFITS values
+head(dffits_values)
+```
+
+You can also calculate and plot Hadi's Influence Measure:
+```{r}
+# Plot Hadi's Influence Measure
+influence_diagnostics_plot(model, measure = "hadis_influence", return_type = "plot", X, y)
+```
+
