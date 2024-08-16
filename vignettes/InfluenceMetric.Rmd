@@ -10,7 +10,9 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.width = 7,
+  fig.height = 5
 )
 ```
 
@@ -18,7 +20,9 @@ knitr::opts_chunk$set(
 library(InfluenceMetric)
 ```
 
-This package calculates the distance measure (Cook's Distance, DFFITS, or Hadi's Influence Measure) regarding the influence of points and either return the calculated values or plot them.
+The InfluenceMetric package calculates various distance measures (Cook's Distance, DFFITS, or Hadi's Influence Measure) to assess the influence of individual points in a linear regression model. Users can either return the calculated values or generate plots for visual analysis.
+
+# Example 1: Cook's Distance 
 
 In this example, we calculate and plot Cook's Distance for a simple linear model.
 ```{r}
@@ -41,3 +45,29 @@ model <- lm(y ~ X - 1)
 # Plot Cook's Distance
 influence_diagnostics_plot(model, measure = "cooks_distance", return_type = "plot", X, y)
 ```
+
+Cook's Distance helps identify influential observations that significantly affect the estimated regression coefficients. Points with high Cook's Distance values may indicate outliers or leverage points that could disproportionately influence the model.
+
+# Example 2: DFFITS values
+
+Next, we calculate and return the DFFITS values, which measure the impact of each observation on the fitted values.
+```{r}
+# Return DFFITS values
+dffits_values <- influence_diagnostics_plot(model, measure = "dffits", return_type = "measure", X, y)
+
+# Print the first few DFFITS values
+head(dffits_values)
+```
+
+DFFITS is particularly useful for identifying observations that significantly change the predicted values. Observations with DFFITS values greater than a certain threshold (often 2 * sqrt(p/n)) are considered influential.
+
+# Example 3: Hadi's Influence Measure
+
+Finally, we demonstrate how to calculate and plot Hadi's Influence Measure.
+
+```{r}
+# Plot Hadi's Influence Measure
+influence_diagnostics_plot(model, measure = "hadis_influence", return_type = "plot", X, y)
+```
+
+Hadi's Influence Measure considers both the predictor and response variables to assess the overall influence of each observation. It is especially useful for detecting outliers in the X-space.
