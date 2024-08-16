@@ -17,3 +17,27 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(InfluenceMetric)
 ```
+
+This package calculates the distance measure (Cook's Distance, DFFITS, or Hadi's Influence Measure) regarding the influence of points and either return the calculated values or plot them.
+
+In this example, we calculate and plot Cook's Distance for a simple linear model.
+```{r}
+# Set seed for reproducibility
+set.seed(123)
+
+# Generate random data
+n <- 50  # number of observations
+p <- 2   # number of predictors (excluding intercept)
+
+X <- matrix(rnorm(n * p), n, p)
+y <- rnorm(n)
+
+# Add intercept term to the design matrix
+X <- cbind(1, X)
+
+# Fit linear model
+model <- lm(y ~ X - 1)
+
+# Plot Cook's Distance
+influence_diagnostics_plot(model, measure = "cooks_distance", return_type = "plot", X, y)
+```
